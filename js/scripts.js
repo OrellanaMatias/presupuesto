@@ -133,10 +133,17 @@ function generarPresupuesto() {
         yOffset += 10;
 
         doc.setFontSize(12);
-        selectedServices.forEach(service => {
+        const maxY = 270;
+        selectedServices.forEach((service, index) => {
             const cantidadInput = $('#serviciosBody input[value="' + service.name + '"]').closest('tr').find('input.form-control');
             const cantidad = parseInt(cantidadInput.val(), 10) || 0;
             const precioTotal = service.price * cantidad;
+
+            if (yOffset > maxY) {
+                doc.addPage();
+                yOffset = 10;
+            }
+
             const maxWidth = 130;
             const splitServiceName = doc.splitTextToSize(`${service.name} (x${cantidad})`, maxWidth);
             splitServiceName.forEach(line => {
@@ -147,6 +154,7 @@ function generarPresupuesto() {
             doc.setFont('helvetica', 'bold');
             doc.text(`$ ${parseFloat(precioTotal).toLocaleString('es-AR')}`, 190, yOffset - 7, { align: 'right' });
             doc.setFont('helvetica', 'normal');
+            yOffset += 7;
         });
 
         yOffset += 10;
