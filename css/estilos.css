@@ -1,6 +1,12 @@
 body {
     background: #f1f1f1;
     font-family: 'Roboto', sans-serif;
+    cursor: url('../img/cursor.png'), auto;
+    input,
+textarea,
+select {
+    cursor: url('../img/cursor.png'), text;
+}
 }
 
 .barra {
@@ -164,13 +170,22 @@ tbody tr:hover {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 980px;
-    max-width: 650px;
     height: auto;
     background-color: #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 15px;
-    overflow-y: auto;
+}
+
+.modal-dialog {
+    max-width: 100%;
+    margin: 0; 
+}
+
+.modal-content {
+    border: none;
+    border-radius: 0;
+    width: 100%;
 }
 
 .modal-header {
@@ -184,6 +199,7 @@ tbody tr:hover {
 
 .modal-title {
     font-size: 1.5rem;
+    margin: 0;
 }
 
 .close {
@@ -196,9 +212,14 @@ tbody tr:hover {
 .modal-body {
     margin-top: 20px;
     padding: 10px 0;
-    max-height: 250px;
-    overflow-y: auto;
     font-size: 1rem;
+    overflow-y: auto;
+    max-height: 300px; 
+    padding-right: 15px;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 0;
 }
 
 .modal-footer {
@@ -206,7 +227,6 @@ tbody tr:hover {
     justify-content: flex-end;
     margin-top: 20px;
 }
-
 .form-check-input {
     width: 30px;
     height: 30px;
